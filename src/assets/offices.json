@@ -1,0 +1,232 @@
+[
+  {
+    "city": "Amsterdam",
+    "country": {
+      "name": "The Netherlands",
+      "code": "NL"
+    },
+    "address": "Simon Carmiggeltstraat 6-50",
+    "postcode": "1011 DJ",
+    "telephone": "+31 85 888 8138"
+  },
+  {
+    "city": "Berlin",
+    "country": {
+      "name": "Germany",
+      "code": "DE"
+    },
+    "address": "Friedrichstraße 63",
+    "postcode": "10117",
+    "telephone": "+49 30 30808105"
+  },
+  {
+    "city": "Brussels",
+    "country": {
+      "name": "Belgium",
+      "code": "BE"
+    },
+    "address": "Avenue Arnaud Fraiteur 15-23\nBoîte A30",
+    "postcode": "1050",
+    "telephone": "+32 2 808 67 84"
+  },
+  {
+    "city": "Hong Kong",
+    "country": {
+      "name": "Hong Kong",
+      "code": "HK"
+    },
+    "address": "Suite 7108\nMass Mutual Tower\n33 Lockhart Rd\nWan Chai",
+    "postcode": "999077",
+    "telephone": "+852 5808 2209"
+  },
+  {
+    "city": "London",
+    "country": {
+      "name": "United Kingdom",
+      "code": "UK"
+    },
+    "address": "10 Hills Place - 5th Floor",
+    "postcode": "W1F 7SD",
+    "telephone": "+44 203 936 4029"
+  },
+  {
+    "city": "Madrid",
+    "country": {
+      "name": "Spain",
+      "code": "ES"
+    },
+    "address": "Calle Serrano 37",
+    "postcode": "28001",
+    "telephone": "+34 91 901 4001"
+  },
+  {
+    "city": "Manchester",
+    "country": {
+      "name": "United Kingdom",
+      "code": "UK"
+    },
+    "address": "Bonded Warehouse (Suite 414)\n18 Lower Byrom Street",
+    "postcode": "M3 4AP",
+    "telephone": "+44 203 936 4029"
+  },
+  {
+    "city": "Melbourne",
+    "country": {
+      "name": "Australia",
+      "code": "AU"
+    },
+    "address": "Level 7, 222 Exhibition Street\nVIC",
+    "postcode": "3000",
+    "telephone": "+61 2 8520 3890"
+  },
+  {
+    "city": "Mexico City",
+    "country": {
+      "name": "Mexico",
+      "code": "MX"
+    },
+    "address": "Varsovia 36, Oficina 708\nColonia Juárez\nCuauhtémoc",
+    "postcode": "06600",
+    "telephone": "+52 55 4164 2395"
+  },
+  {
+    "city": "Milan",
+    "country": {
+      "name": "Italy",
+      "code": "IT"
+    },
+    "address": "Bastioni di Porta Nuova 21",
+    "postcode": "2120121",
+    "telephone": "+39 02 8295 1238"
+  },
+  {
+    "city": "Mumbai",
+    "country": {
+      "name": "India",
+      "code": "IN"
+    },
+    "address": "WeWork, C - 20, G Block BKC,\nBandra Kurla Complex,\nBandra East, Mumbai,\nMaharashtra",
+    "postcode": "400051",
+    "telephone": ""
+  },
+  {
+    "city": "Munich",
+    "country": {
+      "name": "Germany",
+      "code": "DE"
+    },
+    "address": "Ludwigstraße 9",
+    "postcode": "80539",
+    "telephone": "+49 30 30808105"
+  },
+  {
+    "city": "New York",
+    "country": {
+      "name": "United States",
+      "code": "US"
+    },
+    "address": "18 East 16th St., 7th Floor\nNY",
+    "postcode": "10003",
+    "telephone": "+1 866-458-4313"
+  },
+  {
+    "city": "Paris",
+    "country": {
+      "name": "France",
+      "code": "FR"
+    },
+    "address": "21 Boulevard de la Madeleine",
+    "postcode": "75001",
+    "telephone": "+33 1 76 35 07 90"
+  },
+  {
+    "city": "Warsaw",
+    "country": {
+      "name": "Poland",
+      "code": "PL"
+    },
+    "address": "Adyen - Mindspace office\nKoszykowa 61 - 1st floor",
+    "postcode": "00-667",
+    "telephone": ""
+  },
+  {
+    "city": "San Francisco",
+    "country": {
+      "name": "United States",
+      "code": "US"
+    },
+    "address": "274 Brannan Street, Suite 600\nCA",
+    "postcode": "94107",
+    "telephone": "+1 (415) 367 1502"
+  },
+  {
+    "city": "São Paulo",
+    "country": {
+      "name": "",
+      "code": ""
+    },
+    "address": "Avenida das Nações Unidas, 14261\n17° andar, Conjunto B",
+    "postcode": "04794",
+    "telephone": "+55 11 3197 4315"
+  },
+  {
+    "city": "Shanghai",
+    "country": {
+      "name": "China",
+      "code": "CN"
+    },
+    "address": "ZhongChuang Building\n#04-116, 819 Nanjing West Road",
+    "postcode": "200041",
+    "telephone": "+86 (0)21 5291 9320"
+  },
+  {
+    "city": "Singapore",
+    "country": {
+      "name": "Singapore",
+      "code": "SG"
+    },
+    "address": "109 North Bridge Road\n#10-22 Funan",
+    "postcode": "179097",
+    "telephone": "+65 3163 4469"
+  },
+  {
+    "city": "Stockholm",
+    "country": {
+      "name": "Sweden",
+      "code": "SE"
+    },
+    "address": "Kungsbron 16, 12th floor",
+    "postcode": "111 22",
+    "telephone": "+46 (0)8-124 009 50"
+  },
+  {
+    "city": "Sydney",
+    "country": {
+      "name": "Australia",
+      "code": "AU"
+    },
+    "address": "1/255 Riley Street, Surry Hills\nNSW",
+    "postcode": "2010",
+    "telephone": "+61 2 8520 3890"
+  },
+  {
+    "city": "Tokyo",
+    "country": {
+      "name": "Japan",
+      "code": "JP"
+    },
+    "address": "2-14-4 Kita-Aoyama\nthe ARGYLE aoyama\nWeWork 7F\nMinato-ku",
+    "postcode": "107-0061",
+    "telephone": "+81-3-5778-7695"
+  },
+  {
+    "city": "Toronto",
+    "country": {
+      "name": "Canada",
+      "code": "CA"
+    },
+    "address": "240 Richmond St W\nON",
+    "postcode": "M5V 2C5",
+    "telephone": "+1 647 849 1378"
+  }
+]

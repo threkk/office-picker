@@ -1,94 +1,45 @@
 <template>
   <div>
-        <h1>Adyen Office Picker</h1>
+    <h1>Adyen Office Picker</h1>
     <div class="content">
       <div class="columns">
-        <div class="column col-sm-12 col-md-6 col-xl-4 col-3">
-          <div class="card my-2">
-            <div class="card-image">
-              <img src="./assets/logo.png" class="img-responsive">
-            </div>
-            <div class="card-header">
-              <div class="card-title h5">Lorem ipsum</div>
-              <div class="card-subtitle text-gray">Dolor sit amet</div>
-            </div>
-            <div class="card-body">
-              ...consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="card-footer">
-              <button class="btn btn-primary">Okay</button>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Card end -->
-        <div class="column col-sm-12 col-md-6 col-xl-4 col-3">
-          <div class="card my-2">
-            <div class="card-image">
-              <img src="./assets/logo.png" class="img-responsive">
-            </div>
-            <div class="card-header">
-              <div class="card-title h5">Lorem ipsum</div>
-              <div class="card-subtitle text-gray">Dolor sit amet</div>
-            </div>
-            <div class="card-body">
-              ...consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="card-footer">
-              <button class="btn btn-primary">Okay</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card end -->
-        <div class="column col-sm-12 col-md-6 col-xl-4 col-3">
-          <div class="card my-2">
-            <div class="card-image">
-              <img src="./assets/logo.png" class="img-responsive">
-            </div>
-            <div class="card-header">
-              <div class="card-title h5">Lorem ipsum</div>
-              <div class="card-subtitle text-gray">Dolor sit amet</div>
-            </div>
-            <div class="card-body">
-              ...consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="card-footer">
-              <button class="btn btn-primary">Okay</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card end -->
-        <div class="column col-sm-12 col-md-6 col-xl-4 col-3">
-          <div class="card my-2">
-            <div class="card-image">
-              <img src="./assets/logo.png" class="img-responsive">
-            </div>
-            <div class="card-header">
-              <div class="card-title h5">Lorem ipsum</div>
-              <div class="card-subtitle text-gray">Dolor sit amet</div>
-            </div>
-            <div class="card-body">
-              ...consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="card-footer">
-              <button class="btn btn-primary">Okay</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card end -->
-      </div> 
+        <Card
+          v-for="(office, idx) in offices"
+          :key="idx"
+          v-bind:city="office.city"
+          v-bind:country="office.country.name"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import { State, Action } from 'vuex-class'
+import { Office } from './store/modules/offices.types'
 
-export default class App extends Vue {}
+import Card from './components/Card'
+
+const namespace = 'offices'
+
+@Component({
+  components: {
+    Card
+  }
+})
+export default class App extends Vue {
+  @State('offices', { namespace }) offices: Office[]
+  @Action('fetchOffices', { namespace }) fetchOffices: void
+
+  constructor() {
+    super()
+  }
+
+  mounted() {
+    this.fetchOffices()
+  }
+}
 </script>
 
 <style lang="scss">
@@ -102,5 +53,4 @@ body {
   line-height: 1.6;
   padding: 0 10px;
 }
-
 </style>

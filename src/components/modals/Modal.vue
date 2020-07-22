@@ -15,6 +15,10 @@
           <div class="modal-body">
             <div class="content">
               <send-me-there v-if="type === 'TRAVEL'"></send-me-there>
+              <see-location
+                :city="city"
+                v-if="type === 'DETAILS'"
+              ></see-location>
             </div>
           </div>
           <div class="modal-footer"></div>
@@ -25,24 +29,25 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { State, Mutation } from 'vuex-class'
+import { namespace } from 'vuex-class'
 import { SizeModalState, TypeModalState } from '../../store/modules/modals'
 import SendMeThere from './SendMeThereModal.vue'
+import SeeLocation from './SeeLocationModal.vue'
 
-const namespace = 'modals'
+const modals = namespace('modals')
 
 @Component({
   components: {
-    'send-me-there': SendMeThere
+    'send-me-there': SendMeThere,
+    'see-location': SeeLocation
   }
 })
 export default class Modal extends Vue {
-  @State('size', { namespace }) size: SizeModalState
-  @State('title', { namespace }) title: string
-  @State('visible', { namespace }) isVisible: boolean
-  @State('city', { namespace }) city: string
-  @State('type', { namespace }) type: TypeModalState
-  @Mutation('hideModal', { namespace }) hideModal
+  @modals.State('size', { namespace }) size: SizeModalState
+  @modals.State('visible', { namespace }) isVisible: boolean
+  @modals.State('city', { namespace }) city: string
+  @modals.State('type', { namespace }) type: TypeModalState
+  @modals.Mutation('hideModal', { namespace }) hideModal
 
   constructor() {
     super()
@@ -53,6 +58,11 @@ export default class Modal extends Vue {
     if (this.size === 'SMALL') style.push('modal-sm')
     else if (this.size === 'LARGE') style.push('modal-lg')
     return style
+  }
+
+  get title(): string {
+    if (this.type === 'DETAILS') return `About ${this.city}`
+    else return ''
   }
 
   get titleStyles() {

@@ -3,7 +3,6 @@ import { ModalState, TypeModalState, SizeModalState } from './modals.types'
 
 const state: ModalState = {
   city: '',
-  title: '',
   type: 'DETAILS',
   visible: false,
   size: 'MEDIUM'
@@ -13,7 +12,6 @@ const mutations: MutationTree<ModalState> = {
   patchModal(state: ModalState, patch: Partial<ModalState>) {
     state.city = patch.city ?? state.city
     state.size = patch.size ?? state.size
-    state.title = patch.title ?? state.title
     state.type = patch.type ?? state.type
     state.visible = patch.visible ?? state.visible
   },
@@ -44,7 +42,6 @@ const actions: ActionTree<ModalState, {}> = {
   patchModal({ commit }, patch: Partial<ModalState>) {
     if (patch.city) commit('setCity', patch.city)
     if (patch.size) commit('setSize', patch.size)
-    if (patch.title) commit('setTitle', patch.title)
     if (patch.type) commit('setType', patch.type)
     if (patch.visible) commit('showModal')
     else commit('hideModal')

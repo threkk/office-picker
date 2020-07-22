@@ -1,12 +1,9 @@
+import { Coordinates } from '../store/modules/offices.types'
+
 type Image = {
   source: string
   width: number
   height: number
-}
-
-type Coordinates = {
-  lat: number
-  lon: number
 }
 
 export type WikipediaInfo = {

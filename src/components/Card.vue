@@ -5,7 +5,7 @@
       <div class="card-image">
         <div class="square">
           <img
-            v-if="office.imageUrl != null"
+            v-if="office.imageUrl != ''"
             :src="office.imageUrl"
             :alt="'Picture of ' + city"
           />
@@ -17,7 +17,7 @@
         <div class="card-subtitle bold text-gray">{{ country }}</div>
       </div>
       <div class="card-body">
-        <p>{{ office.summary }}</p>
+        <p>{{ office.description }}</p>
       </div>
       <div class="card-footer">
         <button class="btn btn-primary mr-2" @click="showDetailsModal">
@@ -69,7 +69,6 @@ export default class Card extends Vue {
       type: 'DETAILS',
       visible: true,
       city: this.city,
-      title: `About ${this.city}`,
       size: 'MEDIUM'
     }
     this.patchModal(patch)
@@ -80,7 +79,6 @@ export default class Card extends Vue {
       type: 'TRAVEL',
       visible: true,
       city: this.city,
-      title: `Travelling to ${this.city}`,
       size: 'SMALL'
     }
     this.patchModal(patch)

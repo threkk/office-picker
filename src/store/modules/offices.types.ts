@@ -1,28 +1,59 @@
-type Country = {
+export type Country = {
   name: string
   code: string
 }
 
-type Location = {
+export type Location = {
   address: string
   postcode: string
-  phone?: string
+  phone: string
   mapUrl: string
+  coordinates: Coordinates
+}
+
+export type Coordinates = {
+  lat: number
+  lon: number
+}
+
+export type Weather = {
+  weatherIconUrl: string
+  weatherDescription: string
+  temperature: number
 }
 
 export class Office {
   city: string
   country: Country
-  location?: Location
-  // weather?: any
-  summary?: string
-  imageUrl?: string
+  location: Location
+  weather: Weather
+  description: string
+  summary: string
+  imageUrl: string
 
   constructor(city: string, countryName: string, countryCode: string) {
     this.city = city
-    this.country = {
-      name: countryName,
-      code: countryCode
+    this.description = ''
+    this.imageUrl = ''
+    this.summary = ''
+    ;(this.weather = {
+      weatherDescription: '',
+      weatherIconUrl: '',
+      temperature: NaN
+    }),
+      (this.country = {
+        name: countryName,
+        code: countryCode
+      })
+    this.location = {
+      address: '',
+      mapUrl: '',
+      phone: '',
+      postcode: '',
+      coordinates: {
+        lat: 0,
+        lon: 0
+      }
     }
   }
 }

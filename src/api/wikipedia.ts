@@ -9,7 +9,7 @@ type Coordinates = {
   lon: number
 }
 
-type WikipediaInfo = {
+export type WikipediaInfo = {
   readonly city: string
   readonly thumbnail: Image
   readonly image: Image
@@ -30,7 +30,7 @@ export async function getCityInformation(
   city: string
 ): Promise<WikipediaInfo | null> {
   try {
-    const res = await fetch(`${WIKIPEDIA_BASE}${city}?redirect=true`, {
+    const res = await fetch(`${WIKIPEDIA_BASE}${city}`, {
       headers,
       method: 'GET',
       mode: 'cors'

@@ -7,6 +7,7 @@ type Location = {
   address: string
   postcode: string
   phone?: string
+  mapUrl: string
 }
 
 export class Office {

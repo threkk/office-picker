@@ -27,24 +27,15 @@ const mutations: MutationTree<OfficeState> = {
     }
   },
 
-  setLocationMapUrl(
+  setLocation(
     state: OfficeState,
-    payload: { city: string; mapUrl: string }
-  ) {
-    const office = state.offices.find(office => office.city === payload.city)
-    if (office) {
-      office.location.mapUrl = payload.mapUrl
-    }
-  },
-
-  setLocationCoordinates(
-    state: OfficeState,
-    payload: Coordinates & { city: string }
+    payload: Coordinates & { city: string; mapUrl: string }
   ) {
     const office = state.offices.find(office => office.city === payload.city)
     if (office) {
       office.location.coordinates.lat = payload.lat
       office.location.coordinates.lon = payload.lon
+      office.location.mapUrl = payload.mapUrl
     }
   },
 
@@ -123,8 +114,7 @@ const actions: ActionTree<OfficeState, {}> = {
         )
         if (res.ok) {
           const obj = await res.json()
-          commit('setLocationCoordinates', { ...obj.coordinates, city })
-          commit('setLocationMapUrl', { city, mapUrl: obj.mapUrl })
+          commit('setLocation', { ...obj, city })
         }
       } catch (e) {
         console.error(e)

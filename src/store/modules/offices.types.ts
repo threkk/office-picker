@@ -51,15 +51,15 @@ export class Office {
     this.description = ''
     this.imageUrl = ''
     this.summary = ''
-    ;(this.weather = {
+    this.weather = {
       weatherDescription: '',
       weatherIconUrl: '',
       temperature: NaN
-    }),
-      (this.country = {
-        name: countryName,
-        code: countryCode
-      })
+    }
+    this.country = {
+      name: countryName,
+      code: countryCode
+    }
     this.location = {
       address: '',
       mapUrl: '',

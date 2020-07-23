@@ -45,10 +45,16 @@ const strOrFirst = (obj: string | string[]) =>
   Array.isArray(obj) ? obj[0] : obj
 
 export default async function(req: NowRequest, res: NowResponse) {
-  const city: string = strOrFirst(req.query.city) ?? null
-  const country: string = strOrFirst(req.query.country) ?? null
-  const address: string = strOrFirst(req.query.address) ?? null
-  const postcode: string = strOrFirst(req.query.address) ?? null
+  const city: string = req.query.city ? strOrFirst(req.query.city) : null
+  const country: string = req.query.country
+    ? strOrFirst(req.query.country)
+    : null
+  const address: string = req.query.address
+    ? strOrFirst(req.query.address)
+    : null
+  const postcode: string = req.query.address
+    ? strOrFirst(req.query.address)
+    : null
 
   if (!city || !country || !address || !postcode) {
     console.error('Original query:', req.query)

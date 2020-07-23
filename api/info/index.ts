@@ -13,7 +13,7 @@ const strOrFirst = (obj: string | string[]) =>
   Array.isArray(obj) ? obj[0] : obj
 
 export default async function(req: NowRequest, res: NowResponse) {
-  const city = strOrFirst(req.query.city) ?? null
+  const city = req.query.city ? strOrFirst(req.query.city) : null
 
   if (!city) {
     console.error('Original query string:', req.query)
@@ -32,10 +32,10 @@ export default async function(req: NowRequest, res: NowResponse) {
       res.status(200).send({
         city,
         extract: json.extract,
-        thumbnail: json.thumbnail ?? null,
-        image: json.originalImage ?? null,
-        description: json.description ?? null,
-        coord: json.coordinates ?? null
+        thumbnail: json.thumbnail ? json.thumbnail : null,
+        image: json.originalImage ? json.originalImage : null,
+        description: json.description ? json.description : null,
+        coord: json.coordinates ? json.coordinates : null
       })
       return
     }

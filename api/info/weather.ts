@@ -14,8 +14,8 @@ const strOrFirst = (obj: string | string[]) =>
   Array.isArray(obj) ? obj[0] : obj
 
 export default async function(req: NowRequest, res: NowResponse) {
-  const city = strOrFirst(req.query.city) ?? null
-  const country = strOrFirst(req.query.code) ?? null
+  const city = req.query.city ? strOrFirst(req.query.city) : null
+  const country = req.query.code ? strOrFirst(req.query.code) : null
 
   if (!city || !country) {
     console.error('Original request:', req.query)

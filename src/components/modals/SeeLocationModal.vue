@@ -44,9 +44,7 @@ export default class SeeLocationModal extends Vue {
   @Prop({ type: String, required: true }) city!: string
   @offices.Getter('getOfficeByCity') getOfficeByCity!: (city: string) => Office
   @offices.Action('fetchWeather') fetchWeather!: (city: string) => void
-  @offices.Action('fetchLocationMapUrl') fetchLocationMapUrl!: (
-    city: string
-  ) => void
+  @offices.Action('fetchLocation') fetchLocation!: (city: string) => void
 
   constructor() {
     super()
@@ -54,7 +52,7 @@ export default class SeeLocationModal extends Vue {
 
   async created() {
     await Promise.all([
-      this.fetchLocationMapUrl(this.city),
+      this.fetchLocation(this.city),
       this.fetchWeather(this.city)
     ])
 

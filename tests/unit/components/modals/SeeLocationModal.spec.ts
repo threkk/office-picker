@@ -46,7 +46,7 @@ describe('SeeLocationModal.vue', () => {
     }
 
     actions = {
-      fetchLocationMapUrl: jest.fn(),
+      fetchLocation: jest.fn(),
       fetchWeather: jest.fn()
     }
 
@@ -67,7 +67,7 @@ describe('SeeLocationModal.vue', () => {
       localVue,
       propsData: { city: 'Amsterdam' }
     })
-    expect(actions.fetchLocationMapUrl).toHaveBeenCalled()
+    expect(actions.fetchLocation).toHaveBeenCalled()
     expect(actions.fetchWeather).toHaveBeenCalled()
   })
 

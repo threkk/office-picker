@@ -80,17 +80,8 @@ const actions: ActionTree<OfficeState, {}> = {
     }
   },
 
-  async fetchCityInformation({ commit, state }, city: string) {
+  async fetchCityInformation({ commit }, city: string) {
     try {
-      // If the city is loaded, we don't request the information again.
-      const office = state.offices.find(office => office.city === city)
-      if (
-        office?.imageUrl != '' &&
-        office?.summary != '' &&
-        office?.summary != ''
-      )
-        return
-
       const res = await fetch(encodeURI(`/api/info?city=${city}`), { headers })
 
       if (res.ok) {
@@ -102,7 +93,7 @@ const actions: ActionTree<OfficeState, {}> = {
     }
   },
 
-  async fetchLocationMapUrl({ commit, state }, city: string) {
+  async fetchLocation({ commit, state }, city: string) {
     const office = state.offices.find(office => office.city === city)
     if (office) {
       try {

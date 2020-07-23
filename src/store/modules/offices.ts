@@ -1,9 +1,16 @@
 import { Module, ActionTree, MutationTree, GetterTree } from 'vuex'
-import officesApi from '../../api/offices'
-import { getCityInformation, WikipediaInfo } from '../../api/wikipedia'
-import { getCoordinates, getMapUrl } from '../../api/geoapify'
-import { Office, OfficeState, Coordinates, Weather } from './offices.types'
-import { getWeather } from '@/api/weather'
+import {
+  Office,
+  OfficeState,
+  Coordinates,
+  Weather,
+  WikipediaInfo
+} from './offices.types'
+
+const headers = {
+  'Content-Type': 'application/json',
+  accept: 'application/json; charset=utf-8'
+}
 
 const mutations: MutationTree<OfficeState> = {
   addOffices(state: OfficeState, offices: Office[]) {
@@ -53,24 +60,33 @@ const mutations: MutationTree<OfficeState> = {
 
 const actions: ActionTree<OfficeState, {}> = {
   async fetchOffices({ commit }) {
-    const res = await officesApi.getOffices()
-    const offices = []
-    for (const item of res) {
-      const office = new Office(item.city, item.country.name, item.country.code)
-      const location = {
-        address: item.address,
-        postcode: item.postcode,
-        phone: item.telephone ?? null,
-        mapUrl: '',
-        coordinates: { lon: 0, lat: 0 }
+    try {
+      const res = await fetch('/api/offices', { headers })
+      if (res.ok) {
+        const items = await res.json()
+        const offices = []
+        for (const item of items) {
+          const office = new Office(
+            item.city,
+            item.country.name,
+            item.country.code
+          )
+          const location = {
+            address: item.address,
+            postcode: item.postcode,
+            phone: item.telephone ?? null,
+            mapUrl: '',
+            coordinates: { lon: 0, lat: 0 }
+          }
+
+          office.location = location
+          offices.push(office)
+        }
+        commit('addOffices', offices)
       }
-
-      office.location = location
-
-      offices.push(office)
+    } catch (e) {
+      console.error(e)
     }
-
-    commit('addOffices', offices)
   },
 
   async fetchCityInformation({ commit, state }, city: string) {
@@ -84,29 +100,34 @@ const actions: ActionTree<OfficeState, {}> = {
       )
         return
 
-      const res = await getCityInformation(city)
+      const res = await fetch(encodeURI(`/api/info?city=${city}`), { headers })
 
-      if (res != null) {
-        commit('setCityInfo', { ...res, city })
+      if (res.ok) {
+        const obj = await res.json()
+        commit('setCityInfo', { ...obj, city })
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   },
 
   async fetchLocationMapUrl({ commit, state }, city: string) {
     const office = state.offices.find(office => office.city === city)
     if (office) {
-      const coords = await getCoordinates({
-        city: office.city,
-        address: office.location.address,
-        country: office.country.name,
-        postcode: office.location?.postcode ?? ''
-      })
-      if (coords != null) {
-        commit('setLocationCoordinates', { ...coords, city })
-        const mapUrl = getMapUrl(coords)
-        commit('setLocationMapUrl', { city, mapUrl })
+      try {
+        const res = await fetch(
+          encodeURI(
+            `/api/info/geo?city=${office.city}&address=${office.location.address}&country=${office.country.name}&postcode=${office.location.postcode}`
+          ),
+          { headers }
+        )
+        if (res.ok) {
+          const obj = await res.json()
+          commit('setLocationCoordinates', { ...obj.coordinates, city })
+          commit('setLocationMapUrl', { city, mapUrl: obj.mapUrl })
+        }
+      } catch (e) {
+        console.error(e)
       }
     }
   },
@@ -114,9 +135,19 @@ const actions: ActionTree<OfficeState, {}> = {
   async fetchWeather({ commit, state }, city: string) {
     const office = state.offices.find(office => office.city === city)
     if (office) {
-      const weather = await getWeather(city, office.country.code)
-      if (weather) {
-        commit('setWeather', { ...weather, city })
+      try {
+        const res = await fetch(
+          encodeURI(
+            `/api/info/weather?city=${city}&code=${office.country.code}`
+          ),
+          { headers }
+        )
+        if (res.ok) {
+          const weather = await res.json()
+          commit('setWeather', { ...weather, city })
+        }
+      } catch (e) {
+        console.error(e)
       }
     }
   }

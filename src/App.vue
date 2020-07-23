@@ -17,13 +17,13 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { State, Action } from 'vuex-class'
+import { namespace } from 'vuex-class'
 import { Office } from './store/modules/offices.types'
 
-import Card from './components/Card'
-import Modal from './components/modals/Modal'
+import Card from './components/Card.vue'
+import Modal from './components/modals/Modal.vue'
 
-const namespace = 'offices'
+const offices = namespace('offices')
 
 @Component({
   components: {
@@ -32,8 +32,8 @@ const namespace = 'offices'
   }
 })
 export default class App extends Vue {
-  @State('offices', { namespace }) offices: Office[]
-  @Action('fetchOffices', { namespace }) fetchOffices: () => void
+  @offices.State('offices') offices!: Office[]
+  @offices.Action('fetchOffices') fetchOffices!: () => void
 
   constructor() {
     super()

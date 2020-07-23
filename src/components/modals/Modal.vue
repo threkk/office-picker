@@ -1,7 +1,7 @@
 <template>
   <div @keydown.esc="hideModal">
     <transition name="fade">
-      <div :class="this.modalSize" v-if="isVisible">
+      <div :class="this.modalSizeStyle" v-if="isVisible">
         <a
           href="#close"
           class="modal-overlay"
@@ -30,7 +30,10 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import { SizeModalState, TypeModalState } from '../../store/modules/modals'
+import {
+  SizeModalState,
+  TypeModalState
+} from '../../store/modules/modals.types'
 import SendMeThere from './SendMeThereModal.vue'
 import SeeLocation from './SeeLocationModal.vue'
 
@@ -43,17 +46,17 @@ const modals = namespace('modals')
   }
 })
 export default class Modal extends Vue {
-  @modals.State('size', { namespace }) size: SizeModalState
-  @modals.State('visible', { namespace }) isVisible: boolean
-  @modals.State('city', { namespace }) city: string
-  @modals.State('type', { namespace }) type: TypeModalState
-  @modals.Mutation('hideModal', { namespace }) hideModal
+  @modals.State('size') size!: SizeModalState
+  @modals.State('visible') isVisible!: boolean
+  @modals.State('city') city!: string
+  @modals.State('type') type!: TypeModalState
+  @modals.Mutation('hideModal') hideModal!: () => void
 
   constructor() {
     super()
   }
 
-  get modalSize(): SizeModalState {
+  get modalSizeStyle(): string[] {
     const style = ['modal', 'active']
     if (this.size === 'SMALL') style.push('modal-sm')
     else if (this.size === 'LARGE') style.push('modal-lg')
@@ -65,7 +68,7 @@ export default class Modal extends Vue {
     else return ''
   }
 
-  get titleStyles() {
+  get titleStyles(): string[] {
     const modalTitle = 'modal-title'
     let modalSize = 'h2'
     if (this.size === 'SMALL') modalSize = 'h3'

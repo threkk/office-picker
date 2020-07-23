@@ -27,12 +27,10 @@ const mutations: MutationTree<ModalState> = {
     state.size = size
   },
 
-  setTitle(state: ModalState, title: string) {
-    state.title = title
-  },
   showModal(state: ModalState) {
     state.visible = true
   },
+
   hideModal(state: ModalState) {
     state.visible = false
   }

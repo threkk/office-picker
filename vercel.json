@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "alias": ["office-picker.threkk.com"],
+  "routes": [
+    { "src": "/api/offices", "methods": ["GET"], "dest": "api/offices/index.ts" },
+    { "src": "/api/info/", "methods": ["GET"], "dest": "api/info/index.ts" },
+    { "src": "/api/info/weather", "methods": ["GET"], "dest": "api/info/weather.ts" },
+    { "src": "/api/info/geo", "methods": ["GET"], "dest": "api/info/geo.ts" }
+  ]
+}

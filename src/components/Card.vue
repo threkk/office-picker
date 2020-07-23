@@ -42,12 +42,12 @@ const modals = namespace('modals')
 
 @Component
 export default class Card extends Vue {
-  @Prop({ required: true, type: String }) city: string
-  @Prop({ required: true, type: String }) country: string
+  @Prop({ required: true, type: String }) city!: string
+  @Prop({ required: true, type: String }) country!: string
   @offices.Action('fetchCityInformation')
-  fetchCityInformation: () => void
-  @offices.Getter('getOfficeByCity') getOfficeByCity: (city: string) => Office
-  @modals.Mutation('patchModal') patchModal: (
+  fetchCityInformation!: (city: string) => void
+  @offices.Getter('getOfficeByCity') getOfficeByCity!: (city: string) => Office
+  @modals.Mutation('patchModal') patchModal!: (
     patch: Partial<ModalState>
   ) => void
 

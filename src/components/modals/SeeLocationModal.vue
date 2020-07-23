@@ -15,7 +15,7 @@
       </div>
 
       <div class="column col-sm-12 col-6">
-        <div class="toast">
+        <div v-if="office.weather.weatherDescription !== ''" class="toast">
           <img :src="office.weather.weatherIconUrl" class="img-responsive" />
           <strong>{{ office.weather.temperature }} &deg;C</strong> -
           <em> {{ office.weather.weatherDescription }}</em>
@@ -41,10 +41,10 @@ const offices = namespace('offices')
 
 @Component
 export default class SeeLocationModal extends Vue {
-  @Prop({ type: String, required: true }) city: string
-  @offices.Getter('getOfficeByCity') getOfficeByCity: (city: string) => Office
-  @offices.Action('fetchWeather') fetchWeather: (city: string) => void
-  @offices.Action('fetchLocationMapUrl') fetchLocationMapUrl: (
+  @Prop({ type: String, required: true }) city!: string
+  @offices.Getter('getOfficeByCity') getOfficeByCity!: (city: string) => Office
+  @offices.Action('fetchWeather') fetchWeather!: (city: string) => void
+  @offices.Action('fetchLocationMapUrl') fetchLocationMapUrl!: (
     city: string
   ) => void
 

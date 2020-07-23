@@ -16,6 +16,21 @@ export type Coordinates = {
   lon: number
 }
 
+type Image = {
+  source: string
+  width: number
+  height: number
+}
+
+export type WikipediaInfo = {
+  readonly city: string
+  readonly thumbnail: Image
+  readonly image: Image
+  readonly description: string
+  readonly coord: Coordinates
+  readonly extract: string
+}
+
 export type Weather = {
   weatherIconUrl: string
   weatherDescription: string

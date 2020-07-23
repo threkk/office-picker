@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 
 const API_KEY = process.env.WEATHER_API_KEY
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather?units=metric'
-const ICON_URL = 'http://openweathermap.org/img/wn/'
+const ICON_URL = 'https://openweathermap.org/img/wn/'
 
 const headers = {
   'Content-Type': 'application/json',

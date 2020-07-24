@@ -24,7 +24,7 @@ OpenWeather, Geoapify and Wikipedia.
     TypeScript class-based Vue as a framework choice.
 - **SPA best practices**: I focused on getting a high [Lighthouse](https://developers.google.com/web/tools/lighthouse/) score. The production version that can be tested above scores hight on Lighthouse in both mobile and desktop. The design has been focused on being responsive to different resolutions.
 - **API integrations**: The project integrates three different API's using Vuex
-    and a lambda based backend-for-fronted. At the same time,
+    and a lambda based backend-for-fronted.
 
 ### Pending work
 - **More testing**: The Vuex stores have been heavily tested, but due to time
@@ -35,7 +35,7 @@ OpenWeather, Geoapify and Wikipedia.
     and checking the values in the state before calling the actions.
 - **CI/CD pipeline**: Although it is "trivial", I didn't have time to create a
     CI/CD pipeline to automatically deploy the project on Github. However, the
-    deployment using `vercel` builds the project and runs the tests.
+    deployment using `vercel` builds the project and runs the tests before making it available.
 
 ## Project setup
 
